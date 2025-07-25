@@ -5,6 +5,8 @@ __pycache__
 # SQLite database
 *.db
 *.sqlite
+dating_app.db        
+users_db.json         
 
 # Logs
 *.log
@@ -32,3 +34,6 @@ develop-eggs/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Render config
+.render/               # ✅ Optional if Render creates it
