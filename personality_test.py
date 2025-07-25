@@ -178,7 +178,7 @@ class PersonalityTest:
         
         return descriptions.get(trait, {}).get(category, "No description available")
         def calculate_traits(self, answers: Dict[str, List[int]]) -> Dict[str, float]:
-    """
+"""
     Takes a dictionary of answers like:
     {
         'openness': [1, 0, 1, 1],
