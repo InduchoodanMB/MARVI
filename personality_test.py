@@ -177,19 +177,20 @@ class PersonalityTest:
         }
         
         return descriptions.get(trait, {}).get(category, "No description available")
-       def calculate_traits(self, answers: Dict[str, List[int]]) -> Dict[str, float]:
-    """
-    Takes a dictionary of answers like:
-    {
-        'openness': [1, 0, 1, 1],
-        'conscientiousness': [1, 1, 0, 1],
-        ...
-    }
-    and returns normalized trait scores as percentages.
-    """
-    trait_scores = {}
-    for trait, questions in self.questions.items():
-        total_questions = len(questions)
-        total_score = sum(answers.get(trait, []))
-        trait_scores[trait] = round((total_score / total_questions) * 100, 2) if total_questions else 0.0
-    return trait_scores
+    
+    def calculate_traits(self, answers: Dict[str, List[int]]) -> Dict[str, float]:
+        """
+        Takes a dictionary of answers like:
+        {
+            'openness': [1, 0, 1, 1],
+            'conscientiousness': [1, 1, 0, 1],
+            ...
+        }
+        and returns normalized trait scores as percentages.
+        """
+        trait_scores = {}
+        for trait, questions in self.questions.items():
+            total_questions = len(questions)
+            total_score = sum(answers.get(trait, []))
+            trait_scores[trait] = round((total_score / total_questions) * 100, 2) if total_questions else 0.0
+        return trait_scores
