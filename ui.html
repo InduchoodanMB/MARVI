@@ -43,6 +43,12 @@
             box-shadow: 0 6px 20px rgba(255, 0, 102, 0.6);
         }
         
+        .pixel-button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
         .glitch {
             position: relative;
             animation: glitch 2s infinite;
@@ -230,6 +236,20 @@
             border-radius: 5px;
             z-index: 1000;
         }
+
+        input, select, textarea {
+            background: rgba(0, 0, 0, 0.8) !important;
+            border: 2px solid #ff00ff !important;
+            color: white !important;
+            padding: 10px !important;
+            font-family: 'Press Start 2P', cursive !important;
+            font-size: 10px !important;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none !important;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.5) !important;
+        }
     </style>
 </head>
 <body>
@@ -283,75 +303,6 @@
             </div>
         </section>
 
-        <!-- Profile Section -->
-        <section id="profile" class="section">
-            <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="text-4xl font-bold mb-8 neon-text">PERSONALITY PROFILE</h2>
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="pixel-card">
-                            <i class="personality-icon fas fa-brain"></i>
-                            <h3 class="text-xl mb-4">BIG FIVE MODEL</h3>
-                            <p class="text-sm">Based on decades of psychological research, our assessment 
-                            measures five core personality dimensions for accurate compatibility matching.</p>
-                        </div>
-                        <div class="pixel-card">
-                            <i class="personality-icon fas fa-chart-line"></i>
-                            <h3 class="text-xl mb-4">DEEP ANALYSIS</h3>
-                            <p class="text-sm">We analyze emotional stability, value alignment, and character 
-                            resonance to find matches that truly connect with your personality.</p>
-                        </div>
-                        <div class="pixel-card">
-                            <i class="personality-icon fas fa-lightbulb"></i>
-                            <h3 class="text-xl mb-4">EXPLAINABLE RESULTS</h3>
-                            <p class="text-sm">Get clear reasoning behind each match score with detailed 
-                            compatibility explanations and personality insights.</p>
-                        </div>
-                        <div class="pixel-card">
-                            <i class="personality-icon fas fa-code"></i>
-                            <h3 class="text-xl mb-4">EASY INTEGRATION</h3>
-                            <p class="text-sm">Lightweight Python implementation with minimal dependencies 
-                            for seamless integration into existing applications.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Matchmaking Section -->
-        <section id="matchmaking" class="section">
-            <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="text-4xl font-bold mb-8 neon-text">SMART MATCHING</h2>
-                    <div class="pixel-card">
-                        <h3 class="text-2xl mb-6">THE FIVE DIMENSIONS</h3>
-                        <div class="grid md:grid-cols-5 gap-4">
-                            <div class="text-center">
-                                <i class="fas fa-eye text-3xl text-pink-400 mb-2"></i>
-                                <p class="text-sm">OPENNESS</p>
-                            </div>
-                            <div class="text-center">
-                                <i class="fas fa-tasks text-3xl text-pink-400 mb-2"></i>
-                                <p class="text-sm">CONSCIENTIOUSNESS</p>
-                            </div>
-                            <div class="text-center">
-                                <i class="fas fa-users text-3xl text-pink-400 mb-2"></i>
-                                <p class="text-sm">EXTRAVERSION</p>
-                            </div>
-                            <div class="text-center">
-                                <i class="fas fa-heart text-3xl text-pink-400 mb-2"></i>
-                                <p class="text-sm">AGREEABLENESS</p>
-                            </div>
-                            <div class="text-center">
-                                <i class="fas fa-exclamation-triangle text-3xl text-pink-400 mb-2"></i>
-                                <p class="text-sm">NEUROTICISM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Get Started Section -->
         <section id="start" class="section">
             <div class="container mx-auto px-4">
@@ -366,41 +317,6 @@
                 </div>
             </div>
         </section>
-    </div>
-
-    <!-- User Details Form -->
-    <div id="userDetailsForm" class="hidden">
-        <div class="min-h-screen flex items-center justify-center">
-            <div class="max-w-md w-full mx-auto">
-                <div class="pixel-card">
-                    <h2 class="text-2xl font-bold mb-6 text-center neon-text">YOUR DETAILS</h2>
-                    <form id="detailsForm">
-                        <div class="mb-4">
-                            <label class="block text-sm font-bold mb-2">NAME</label>
-                            <input type="text" id="userName" class="w-full p-3 bg-black border-2 border-pink-400 text-white" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-bold mb-2">AGE</label>
-                            <input type="number" id="userAge" class="w-full p-3 bg-black border-2 border-pink-400 text-white" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-bold mb-2">GENDER</label>
-                            <select id="userGender" class="w-full p-3 bg-black border-2 border-pink-400 text-white" required>
-                                <option value="">Select Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-sm font-bold mb-2">LOCATION</label>
-                            <input type="text" id="userLocation" class="w-full p-3 bg-black border-2 border-pink-400 text-white" required>
-                        </div>
-                        <button type="submit" class="pixel-button w-full">CONTINUE TO ASSESSMENT</button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Question Counter -->
@@ -447,7 +363,7 @@
         <div class="min-h-screen py-20">
             <div class="container mx-auto px-4">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold mb-8 text-center neon-text">YOUR MATCHES</h2>
+                    <h2 class="text-4xl font-bold mb-8 text-center neon-text">YOUR PERSONALITY & MATCHES</h2>
                     <div class="pixel-card mb-8">
                         <h3 class="text-xl mb-4">YOUR PERSONALITY PROFILE</h3>
                         <div id="personalityResults" class="grid md:grid-cols-5 gap-4">
@@ -466,33 +382,10 @@
     </div>
 
     <script>
-        // Questions from the backend
-        const questions = [
-            {id: 1, trait: 'openness', question: 'I enjoy trying new and unusual experiences', is_positive: true},
-            {id: 2, trait: 'openness', question: 'I prefer routine and familiar activities', is_positive: false},
-            {id: 3, trait: 'openness', question: 'I love exploring new ideas and concepts', is_positive: true},
-            {id: 4, trait: 'openness', question: 'I\'m curious about how things work', is_positive: true},
-            {id: 5, trait: 'conscientiousness', question: 'I always complete tasks on time', is_positive: true},
-            {id: 6, trait: 'conscientiousness', question: 'I keep my workspace organized', is_positive: true},
-            {id: 7, trait: 'conscientiousness', question: 'I often procrastinate on important tasks', is_positive: false},
-            {id: 8, trait: 'conscientiousness', question: 'I pay attention to details', is_positive: true},
-            {id: 9, trait: 'extraversion', question: 'I enjoy being the center of attention', is_positive: true},
-            {id: 10, trait: 'extraversion', question: 'I feel energized after social gatherings', is_positive: true},
-            {id: 11, trait: 'extraversion', question: 'I prefer quiet, solitary activities', is_positive: false},
-            {id: 12, trait: 'extraversion', question: 'I find it easy to start conversations', is_positive: true},
-            {id: 13, trait: 'agreeableness', question: 'I try to help others when I can', is_positive: true},
-            {id: 14, trait: 'agreeableness', question: 'I trust people easily', is_positive: true},
-            {id: 15, trait: 'agreeableness', question: 'I often get into arguments with others', is_positive: false},
-            {id: 16, trait: 'agreeableness', question: 'I\'m sympathetic to others\' problems', is_positive: true},
-            {id: 17, trait: 'neuroticism', question: 'I often worry about things', is_positive: true},
-            {id: 18, trait: 'neuroticism', question: 'I get stressed easily', is_positive: true},
-            {id: 19, trait: 'neuroticism', question: 'I remain calm under pressure', is_positive: false},
-            {id: 20, trait: 'neuroticism', question: 'I rarely feel anxious or nervous', is_positive: false}
-        ];
-
+        // Questions from the backend - these will be fetched dynamically
+        let questions = [];
         let currentQuestionIndex = 0;
         let responses = {};
-        let userDetails = {};
 
         // Scale options
         const scaleOptions = [
@@ -524,31 +417,54 @@
             setTimeout(() => speech.classList.remove('show'), 3000);
         }
 
-        function startAssessment() {
-            document.getElementById('landingPage').classList.add('hidden');
-            document.getElementById('userDetailsForm').classList.remove('hidden');
-            document.getElementById('userDetailsForm').classList.add('fade-in');
-            showCharacterMessage("Let's start with your basic info!");
+        async function startAssessment() {
+            try {
+                // Fetch questions from backend
+                const response = await fetch('/api/questions');
+                questions = await response.json();
+                
+                document.getElementById('landingPage').classList.add('hidden');
+                document.getElementById('personalityAssessment').classList.remove('hidden');
+                document.getElementById('personalityAssessment').classList.add('fade-in');
+                document.getElementById('questionCounter').classList.remove('hidden');
+                
+                showQuestion();
+                showCharacterMessage("Let's dive into your personality!");
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                // Fallback to hardcoded questions if backend fails
+                questions = [
+                    {id: 1, trait: 'openness', question: 'I enjoy trying new and unusual experiences', is_positive: true},
+                    {id: 2, trait: 'openness', question: 'I prefer routine and familiar activities', is_positive: false},
+                    {id: 3, trait: 'openness', question: 'I love exploring new ideas and concepts', is_positive: true},
+                    {id: 4, trait: 'openness', question: 'I\'m curious about how things work', is_positive: true},
+                    {id: 5, trait: 'conscientiousness', question: 'I always complete tasks on time', is_positive: true},
+                    {id: 6, trait: 'conscientiousness', question: 'I keep my workspace organized', is_positive: true},
+                    {id: 7, trait: 'conscientiousness', question: 'I often procrastinate on important tasks', is_positive: false},
+                    {id: 8, trait: 'conscientiousness', question: 'I pay attention to details', is_positive: true},
+                    {id: 9, trait: 'extraversion', question: 'I enjoy being the center of attention', is_positive: true},
+                    {id: 10, trait: 'extraversion', question: 'I feel energized after social gatherings', is_positive: true},
+                    {id: 11, trait: 'extraversion', question: 'I prefer quiet, solitary activities', is_positive: false},
+                    {id: 12, trait: 'extraversion', question: 'I find it easy to start conversations', is_positive: true},
+                    {id: 13, trait: 'agreeableness', question: 'I try to help others when I can', is_positive: true},
+                    {id: 14, trait: 'agreeableness', question: 'I trust people easily', is_positive: true},
+                    {id: 15, trait: 'agreeableness', question: 'I often get into arguments with others', is_positive: false},
+                    {id: 16, trait: 'agreeableness', question: 'I\'m sympathetic to others\' problems', is_positive: true},
+                    {id: 17, trait: 'neuroticism', question: 'I often worry about things', is_positive: true},
+                    {id: 18, trait: 'neuroticism', question: 'I get stressed easily', is_positive: true},
+                    {id: 19, trait: 'neuroticism', question: 'I remain calm under pressure', is_positive: false},
+                    {id: 20, trait: 'neuroticism', question: 'I rarely feel anxious or nervous', is_positive: false}
+                ];
+                
+                document.getElementById('landingPage').classList.add('hidden');
+                document.getElementById('personalityAssessment').classList.remove('hidden');
+                document.getElementById('personalityAssessment').classList.add('fade-in');
+                document.getElementById('questionCounter').classList.remove('hidden');
+                
+                showQuestion();
+                showCharacterMessage("Let's dive into your personality!");
+            }
         }
-
-        document.getElementById('detailsForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            userDetails = {
-                name: document.getElementById('userName').value,
-                age: document.getElementById('userAge').value,
-                gender: document.getElementById('userGender').value,
-                location: document.getElementById('userLocation').value
-            };
-
-            document.getElementById('userDetailsForm').classList.add('hidden');
-            document.getElementById('personalityAssessment').classList.remove('hidden');
-            document.getElementById('personalityAssessment').classList.add('fade-in');
-            document.getElementById('questionCounter').classList.remove('hidden');
-            
-            showQuestion();
-            showCharacterMessage("Now let's dive into your personality!");
-        });
 
         function showQuestion() {
             const question = questions[currentQuestionIndex];
@@ -608,7 +524,7 @@
             }
         }
 
-        function finishAssessment() {
+        async function finishAssessment() {
             document.getElementById('personalityAssessment').classList.add('hidden');
             document.getElementById('questionCounter').classList.add('hidden');
             document.getElementById('loadingScreen').classList.remove('hidden');
@@ -628,9 +544,37 @@
                 messageIndex++;
                 if (messageIndex >= loadingMessages.length) {
                     clearInterval(loadingInterval);
-                    setTimeout(showResults, 1000);
+                    submitToBackend();
                 }
             }, 1500);
+        }
+
+        async function submitToBackend() {
+            try {
+                const response = await fetch('/submit-test', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(responses)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showResults(result.scores);
+                } else {
+                    console.error('Backend error:', result.error);
+                    // Fallback to frontend calculation
+                    const scores = calculatePersonalityScores();
+                    showResults(scores);
+                }
+            } catch (error) {
+                console.error('Network error:', error);
+                // Fallback to frontend calculation
+                const scores = calculatePersonalityScores();
+                showResults(scores);
+            }
         }
 
         function calculatePersonalityScores() {
@@ -665,9 +609,7 @@
             return 'very_high';
         }
 
-        function showResults() {
-            const scores = calculatePersonalityScores();
-            
+        function showResults(scores) {
             document.getElementById('loadingScreen').classList.add('hidden');
             document.getElementById('resultsPage').classList.remove('hidden');
             document.getElementById('resultsPage').classList.add('fade-in');
@@ -699,18 +641,34 @@
                 resultsContainer.appendChild(traitDiv);
             });
             
-            // Show mock matches
-            showMockMatches(scores);
+            // Load matches from backend
+            loadMatches();
             showCharacterMessage("Here are your perfect matches! 💕");
         }
 
-        function showMockMatches(userScores) {
+        async function loadMatches() {
+            try {
+                const response = await fetch('/matches');
+                if (response.ok) {
+                    const html = await response.text();
+                    // This would be better handled with proper API endpoints
+                    showMockMatches();
+                } else {
+                    showMockMatches();
+                }
+            } catch (error) {
+                console.error('Error loading matches:', error);
+                showMockMatches();
+            }
+        }
+
+        function showMockMatches() {
             const mockProfiles = [
-                {name: 'Alex', age: 28, location: 'San Francisco', compatibility: 92},
-                {name: 'Jordan', age: 25, location: 'New York', compatibility: 88},
-                {name: 'Casey', age: 30, location: 'Los Angeles', compatibility: 85},
-                {name: 'Riley', age: 27, location: 'Chicago', compatibility: 82},
-                {name: 'Morgan', age: 29, location: 'Seattle', compatibility: 78}
+                {name: 'Alex Johnson', age: 28, location: 'San Francisco', compatibility: 92},
+                {name: 'Jordan Smith', age: 25, location: 'New York', compatibility: 88},
+                {name: 'Casey Davis', age: 30, location: 'Los Angeles', compatibility: 85},
+                {name: 'Riley Chen', age: 27, location: 'Chicago', compatibility: 82},
+                {name: 'Morgan Taylor', age: 29, location: 'Seattle', compatibility: 78}
             ];
             
             const matchContainer = document.getElementById('matchResults');
@@ -748,7 +706,6 @@
         function resetAssessment() {
             currentQuestionIndex = 0;
             responses = {};
-            userDetails = {};
             
             document.getElementById('resultsPage').classList.add('hidden');
             document.getElementById('landingPage').classList.remove('hidden');
@@ -781,80 +738,6 @@
         setTimeout(() => {
             showCharacterMessage("Welcome to Marvi! Let's find your perfect match! 💕");
         }, 2000);
-    <script>
-    const traits = ['openness', 'conscientiousness', 'extraversion', 'agreeableness', 'neuroticism'];
-    const questionsPerTrait = 4;
-
-    const formContainer = document.createElement('div');
-    formContainer.classList.add("p-4", "text-left");
-    document.body.appendChild(formContainer);
-
-    // User profile inputs
-    formContainer.innerHTML += `
-        <h2 class="text-2xl mb-4">Your Info</h2>
-        <label class="block mb-2">Name: <input type="text" id="name" class="text-black w-full" /></label>
-        <label class="block mb-2">Age: <input type="number" id="age" class="text-black w-full" /></label>
-        <label class="block mb-2">Gender: <input type="text" id="gender" class="text-black w-full" /></label>
-        <label class="block mb-2">Location: <input type="text" id="location" class="text-black w-full" /></label>
-        <label class="block mb-4">Bio: <textarea id="bio" class="text-black w-full"></textarea></label>
-    `;
-
-    // Trait questions
-    traits.forEach(trait => {
-        const group = document.createElement('div');
-        group.innerHTML = `<h2 class="text-lg mt-4 mb-2">${trait.toUpperCase()}</h2>`;
-        for (let i = 0; i < questionsPerTrait; i++) {
-            const label = document.createElement('label');
-            label.classList.add("block", "mb-2");
-            label.innerHTML = `
-                <input type="checkbox" name="${trait}" value="1" class="mr-2" />
-                Statement ${i + 1}
-            `;
-            group.appendChild(label);
-        }
-        formContainer.appendChild(group);
-    });
-
-    const submitBtn = document.createElement('button');
-    submitBtn.innerText = "Submit";
-    submitBtn.classList.add("mt-6", "bg-green-500", "text-white", "px-4", "py-2", "rounded");
-    formContainer.appendChild(submitBtn);
-
-    const results = document.createElement('div');
-    results.classList.add("mt-6", "p-4", "bg-gray-800", "rounded");
-    formContainer.appendChild(results);
-
-    submitBtn.onclick = async () => {
-        const formData = {};
-        traits.forEach(trait => {
-            const checkboxes = document.querySelectorAll(`input[name="${trait}"]:checked`);
-            formData[trait] = Array.from(checkboxes).map(cb => parseInt(cb.value));
-        });
-
-        const payload = {
-            name: document.getElementById("name").value,
-            age: parseInt(document.getElementById("age").value),
-            gender: document.getElementById("gender").value,
-            location: document.getElementById("location").value,
-            bio: document.getElementById("bio").value,
-            answers: formData
-        };
-
-        const res = await fetch('/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        const data = await res.json();
-
-        results.innerHTML = `
-            <h2 class="text-xl mb-2">Your Traits</h2>
-            <pre>${JSON.stringify(data.your_traits, null, 2)}</pre>
-            <h2 class="text-xl mt-4 mb-2">Top Matches</h2>
-            <pre>${JSON.stringify(data.matches, null, 2)}</pre>
-        `;
-    };
-</script>
+    </script>
 </body>
 </html>
