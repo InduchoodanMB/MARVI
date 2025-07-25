@@ -1,3 +1,4 @@
+from database import DatabaseManager
 from flask import Flask, request, jsonify, send_file
 from personality_test import PersonalityTest
 from marvi_matcher import MatchingEngine
