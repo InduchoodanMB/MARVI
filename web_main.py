@@ -2,11 +2,11 @@ from database import DatabaseManager
 from flask import Flask, request, jsonify, send_file
 from personality_test import PersonalityTest
 from marvi_matcher import MatchingEngine
-from database import load_users, save_user
-
 app = Flask(__name__)
 test_engine = PersonalityTest()
 match_engine = MatchingEngine()
+db = DatabaseManager()
+
 
 # Serve the UI
 @app.route('/')
@@ -15,24 +15,46 @@ def serve_ui():
 
 # Handle test submission
 @app.route('/submit', methods=['POST'])
+@app.route('/submit', methods=['POST'])
 def submit_answers():
     data = request.json
 
-    user_answers = data.get('answers')                 # Answers from form
-    user_name = data.get('name', 'Anonymous')          # Name from frontend
+    user_name = data.get('name', 'Anonymous')
+    age = data.get('age', 0)
+    gender = data.get('gender', 'unspecified')
+    location = data.get('location', '')
+    bio = data.get('bio', '')
 
-    # Step 1: Score the user's traits
-    traits = test_engine.calculate_traits(user_answers)
+    answers = data.get('answers')  # dict of trait: [1, 0, 1...]
+    traits = test_engine.calculate_traits(answers)
 
-    # Step 2: Save this user to database
-    save_user({ "name": user_name, "traits": traits })
+    # Convert percent scores (0–100) to SQLite's 1–20 range
+    personality_scores = {trait: max(1, min(20, round(score / 5))) for trait, score in traits.items()}
 
-    # Step 3: Load others (excluding current user)
-    all_users = load_users()
-    match_pool = [u for u in all_users if u["name"] != user_name]
+    user_id = db.add_user(
+        name=user_name,
+        age=age,
+        gender=gender,
+        location=location,
+        bio=bio,
+        personality_scores=personality_scores
+    )
 
-    # Step 4: Find matches
-    matches = match_engine.find_matches(traits, match_pool)
+    if user_id is None:
+        return jsonify({'error': 'Failed to save user'}), 400
+
+    # Get all other users
+    other_users = db.get_all_users_except(user_id)
+
+    # Convert DB structure to what matcher expects
+    match_input = []
+    for u in other_users:
+        match_input.append({
+            'name': u['name'],
+            'traits': u['personality_scores']
+        })
+
+    matches = match_engine.find_matches(traits, match_input)
 
     return jsonify({
         'your_traits': traits,
