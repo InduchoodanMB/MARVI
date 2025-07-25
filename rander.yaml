@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: marvi-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python web_main.py"
+    plan: free
