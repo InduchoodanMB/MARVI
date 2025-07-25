@@ -781,6 +781,57 @@
         setTimeout(() => {
             showCharacterMessage("Welcome to Marvi! Let's find your perfect match! 💕");
         }, 2000);
-    </script>
+     </script>
+    <script>
+    // Sample question structure (replace with real questions from backend)
+    const traits = ['openness', 'conscientiousness', 'extraversion', 'agreeableness', 'neuroticism'];
+    const questionsPerTrait = 4;
+
+    // Create form dynamically
+    const formContainer = document.createElement('div');
+    formContainer.classList.add("p-4", "text-left");
+    document.body.appendChild(formContainer);
+
+    traits.forEach(trait => {
+        const group = document.createElement('div');
+        group.innerHTML = `<h2 class="text-lg mt-4 mb-2">${trait.toUpperCase()}</h2>`;
+        for (let i = 0; i < questionsPerTrait; i++) {
+            const label = document.createElement('label');
+            label.classList.add("block", "mb-2");
+            label.innerHTML = `
+                <input type="checkbox" name="${trait}" value="1" class="mr-2" />
+                Statement ${i + 1}
+            `;
+            group.appendChild(label);
+        }
+        formContainer.appendChild(group);
+    });
+
+    // Submit button
+    const submitBtn = document.createElement('button');
+    submitBtn.innerText = "Submit";
+    submitBtn.classList.add("mt-4", "bg-green-500", "text-white", "px-4", "py-2", "rounded");
+    formContainer.appendChild(submitBtn);
+
+    // Results display
+    const results = document.createElement('div');
+    results.classList.add("mt-6", "p-4", "bg-gray-800", "rounded");
+    formContainer.appendChild(results);
+
+    submitBtn.onclick = async () => {
+        const formData = {};
+        traits.forEach(trait => {
+            const checkboxes = document.querySelectorAll(`input[name="${trait}"]:checked`);
+            formData[trait] = Array.from(checkboxes).map(cb => parseInt(cb.value));
+        });
+
+        const payload = {
+            answers: formData,
+            all_users: [  // Sample data for testing match
+                {
+                    name: "Alex",
+                    traits: { openness: 60, conscientiousness
+
+
 </body>
 </html>
