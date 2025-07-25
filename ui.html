@@ -781,17 +781,25 @@
         setTimeout(() => {
             showCharacterMessage("Welcome to Marvi! Let's find your perfect match! 💕");
         }, 2000);
-     </script>
     <script>
-    // Sample question structure (replace with real questions from backend)
     const traits = ['openness', 'conscientiousness', 'extraversion', 'agreeableness', 'neuroticism'];
     const questionsPerTrait = 4;
 
-    // Create form dynamically
     const formContainer = document.createElement('div');
     formContainer.classList.add("p-4", "text-left");
     document.body.appendChild(formContainer);
 
+    // User profile inputs
+    formContainer.innerHTML += `
+        <h2 class="text-2xl mb-4">Your Info</h2>
+        <label class="block mb-2">Name: <input type="text" id="name" class="text-black w-full" /></label>
+        <label class="block mb-2">Age: <input type="number" id="age" class="text-black w-full" /></label>
+        <label class="block mb-2">Gender: <input type="text" id="gender" class="text-black w-full" /></label>
+        <label class="block mb-2">Location: <input type="text" id="location" class="text-black w-full" /></label>
+        <label class="block mb-4">Bio: <textarea id="bio" class="text-black w-full"></textarea></label>
+    `;
+
+    // Trait questions
     traits.forEach(trait => {
         const group = document.createElement('div');
         group.innerHTML = `<h2 class="text-lg mt-4 mb-2">${trait.toUpperCase()}</h2>`;
@@ -807,13 +815,11 @@
         formContainer.appendChild(group);
     });
 
-    // Submit button
     const submitBtn = document.createElement('button');
     submitBtn.innerText = "Submit";
-    submitBtn.classList.add("mt-4", "bg-green-500", "text-white", "px-4", "py-2", "rounded");
+    submitBtn.classList.add("mt-6", "bg-green-500", "text-white", "px-4", "py-2", "rounded");
     formContainer.appendChild(submitBtn);
 
-    // Results display
     const results = document.createElement('div');
     results.classList.add("mt-6", "p-4", "bg-gray-800", "rounded");
     formContainer.appendChild(results);
@@ -826,12 +832,29 @@
         });
 
         const payload = {
-            answers: formData,
-            all_users: [  // Sample data for testing match
-                {
-                    name: "Alex",
-                    traits: { openness: 60, conscientiousness
+            name: document.getElementById("name").value,
+            age: parseInt(document.getElementById("age").value),
+            gender: document.getElementById("gender").value,
+            location: document.getElementById("location").value,
+            bio: document.getElementById("bio").value,
+            answers: formData
+        };
 
+        const res = await fetch('/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
 
+        const data = await res.json();
+
+        results.innerHTML = `
+            <h2 class="text-xl mb-2">Your Traits</h2>
+            <pre>${JSON.stringify(data.your_traits, null, 2)}</pre>
+            <h2 class="text-xl mt-4 mb-2">Top Matches</h2>
+            <pre>${JSON.stringify(data.matches, null, 2)}</pre>
+        `;
+    };
+</script>
 </body>
 </html>
