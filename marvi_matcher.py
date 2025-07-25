@@ -211,24 +211,25 @@ class MatchingEngine:
             advice.append("Create a supportive environment and communicate openly about stress")
         
         return advice if advice else ["You have great natural compatibility! Focus on open communication and mutual respect."]
-  def find_matches(self, user_traits: Dict[str, float], other_users: List[Dict]) -> List[Dict]:
-    """
-    user_traits: { "openness": 70.0, ... }
-    other_users: [ { "name": "Alex", "traits": {...} }, ... ]
-    Returns top matches based on lowest trait distance.
-    """
-    def trait_distance(t1, t2):
-        return sum(
-            self.trait_weights[trait] * abs(t1[trait] - t2[trait])
-            for trait in self.trait_weights
-        )
 
-    matches = []
-    for user in other_users:
-        distance = trait_distance(user_traits, user["traits"])
-        matches.append({
-            "name": user["name"],
-            "compatibility": round(100 - distance, 2)
-        })
+    def find_matches(self, user_traits: Dict[str, float], other_users: List[Dict]) -> List[Dict]:
+        """
+        user_traits: { "openness": 70.0, ... }
+        other_users: [ { "name": "Alex", "traits": {...} }, ... ]
+        Returns top matches based on lowest trait distance.
+        """
+        def trait_distance(t1, t2):
+            return sum(
+                self.trait_weights[trait] * abs(t1[trait] - t2[trait])
+                for trait in self.trait_weights
+            )
 
-    return sorted(matches, key=lambda x: -x["compatibility"])
+        matches = []
+        for user in other_users:
+            distance = trait_distance(user_traits, user["traits"])
+            matches.append({
+                "name": user["name"],
+                "compatibility": round(100 - distance, 2)
+            })
+
+        return sorted(matches, key=lambda x: -x["compatibility"])
